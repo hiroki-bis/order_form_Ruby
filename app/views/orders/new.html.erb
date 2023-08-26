@@ -1,0 +1,40 @@
+<div class='container mt-3 mt-5'>
+    <h1 class='text-center mb-5'>注文フォーム</h1>
+
+    <%= form_for @order, url: confirm_orders_path do |f| %>
+        <div class='col-md-6 mx-auto mb-5'>
+            <div class='mb-3'>
+                <%=f.label :name, class: 'form-label boder-start border-primary border-4 ps-1' %>
+                <%=f.text_field :name, size: 40, placeholder: 'サンプル太郎', class: 'form-control' %>
+                <%= render partial: 'shared/error_messages', locals: {record: @order, symbol: :name} %>
+            </div>
+        
+            <div class='mb-3'>
+                <%=f.label :email, class: 'form-label boder-start border-primary border-4 ps-1' %>
+                <%=f.text_field :email, size: 100, placeholder: 'sample@example.com', class: 'form-control' %>
+                <%= render partial: 'shared/error_messages', locals: {record: @order, symbol: :email} %>
+            </div>
+        
+            <div class='mb-3'>
+                <%=f.label :telephone, class: 'form-label boder-start border-primary border-4 ps-1' %>
+                <%=f.text_field :telephone, size: 40, placeholder: '0312345678', class: 'form-control' %>
+                <%= render partial: 'shared/error_messages', locals: {record: @order, symbol: :telephone} %>
+            </div>
+        
+            <div class='mb-3'>
+                <%=f.label :delivery_address, class: 'form-label boder-start border-primary border-4 ps-1' %>
+                <%=f.text_field :delivery_address, size: 40, placeholder: 'お届け先の住所を入力してください', class: 'form-control' %>
+                <%= render partial: 'shared/error_messages', locals: {record: @order, symbol: :delivery_address} %>
+            </div>
+
+            <div class='mb-3'>
+                <%=f.label :payment_method_id, class: 'form-label boder-start border-primary border-4 ps-1' %>
+                <%=f.select :payment_method_id, PaymentMethod.selectable_methods, {include_blank: true}, class: 'form-select' %>
+                <%= render partial: 'shared/error_messages', locals: {record: @order, symbol: :payment_method_id} %>
+            </div>
+        </div>
+        <div class='d-grid col-md-6 mx-auto'>
+            <%=f.button '確認画面へ', class: 'btn btn-lg btn-primary' %>
+        </div>
+    <% end %>
+</div>
